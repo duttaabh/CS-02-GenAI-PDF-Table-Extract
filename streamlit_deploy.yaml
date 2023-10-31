@@ -76,7 +76,7 @@ Resources:
           echo "export AWS_REGION=${AWS::Region}" >> /home/ec2-user/.bash_profile
           echo "export AWS_DEFAULT_REGION=${AWS::Region}" >> /home/ec2-user/.bash_profile
           echo "export DYNAMO_CHAT_HISTORY=$dynamo_chat_history" >> /home/ec2-user/.bash_profile
-          source /home/ec2-user/.bash_profile
+          cd /home/ec2-user/
           python3.9 -m venv venv
           source venv/bin/activate
           echo "~/venv/bin/activate" >> /home/ec2-user/.bash_profile
