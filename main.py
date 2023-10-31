@@ -3,7 +3,7 @@ from streamlit_chat import message
 from textractcaller.t_call import call_textract, Textract_Features
 import boto3
 import os
-from langchain.memory import ConversationBufferWindowMemory
+from langchain.memory import DynamoDBChatMessageHistory, ConversationBufferMemory
 from langchain.llms.bedrock import Bedrock
 from langchain.chains import ConversationalRetrievalChain
 
@@ -13,7 +13,7 @@ from langchain.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 from requests_aws4auth import AWS4Auth
-from opensearchpy import OpenSearch, RequestsHttpConnection
+from opensearchpy import RequestsHttpConnection
 from langchain.vectorstores import OpenSearchVectorSearch
 
 s3 = boto3.client('s3', region_name='us-east-1')
@@ -169,8 +169,10 @@ def get_llm():
     return llm
 
 def get_memory():  # create memory for this chat session
-    memory = ConversationBufferWindowMemory(memory_key="chat_history",
-                                            return_messages=True)  # Maintains a history of previous messages
+    message_history = DynamoDBChatMessageHistory(table_name="SessionTable", session_id="1")
+    memory = ConversationBufferMemory(
+        memory_key="chat_history", chat_memory=message_history, return_messages=True
+    )  # Maintains a history of previous messages
     return memory
 
 
