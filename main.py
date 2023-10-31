@@ -36,6 +36,11 @@ if 'OPENSEARCH_ENDPOINT' not in os.environ:
 else:
     opensearch_endpoint = os.environ['OPENSEARCH_ENDPOINT']
 print("opensearch_endpoint: " + str(opensearch_endpoint))
+if 'DYNAMO_CHAT_HISTORY' not in os.environ:
+    sessionTable = 'xxx'
+else:
+    sessionTable = os.environ['DYNAMO_CHAT_HISTORY']
+print("sessionTable: " + str(sessionTable))
 
 credentials = boto3.Session().get_credentials()
 
@@ -169,7 +174,7 @@ def get_llm():
     return llm
 
 def get_memory():  # create memory for this chat session
-    message_history = DynamoDBChatMessageHistory(table_name="SessionTable", session_id="1")
+    message_history = DynamoDBChatMessageHistory(table_name=sessionTable, session_id="1")
     memory = ConversationBufferMemory(
         memory_key="chat_history", chat_memory=message_history, return_messages=True
     )  # Maintains a history of previous messages
