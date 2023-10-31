@@ -3,7 +3,8 @@ from streamlit_chat import message
 from textractcaller.t_call import call_textract, Textract_Features
 import boto3
 import os
-from langchain.memory import DynamoDBChatMessageHistory, ConversationBufferMemory
+from langchain.memory.chat_message_histories import DynamoDBChatMessageHistory
+from langchain.memory import ConversationBufferMemory
 from langchain.llms.bedrock import Bedrock
 from langchain.chains import ConversationalRetrievalChain
 
@@ -15,11 +16,6 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from requests_aws4auth import AWS4Auth
 from opensearchpy import RequestsHttpConnection
 from langchain.vectorstores import OpenSearchVectorSearch
-
-s3 = boto3.client('s3', region_name='us-east-1')
-textract_client = boto3.client('textract', region_name='us-east-1')
-client = boto3.client('opensearchserverless')
-service = 'aoss'
 
 if 'AWS_REGION' not in os.environ:
     region = 'xxx'
@@ -42,6 +38,11 @@ else:
     sessionTable = os.environ['DYNAMO_CHAT_HISTORY']
 print("sessionTable: " + str(sessionTable))
 
+s3 = boto3.client('s3', region_name=region)
+textract_client = boto3.client('textract', region_name=region)
+client = boto3.client('opensearchserverless')
+service = 'aoss'
+
 credentials = boto3.Session().get_credentials()
 
 print('access_key: ' + str(credentials.access_key))
@@ -49,6 +50,8 @@ print("session_token: " + str(credentials.token))
 
 awsauth = AWS4Auth(credentials.access_key, credentials.secret_key,
                    region, service, session_token=credentials.token)
+
+message_history = DynamoDBChatMessageHistory(table_name=sessionTable, session_id='0')
 
 def upload_file(file):
     try:
@@ -174,7 +177,6 @@ def get_llm():
     return llm
 
 def get_memory():  # create memory for this chat session
-    message_history = DynamoDBChatMessageHistory(table_name=sessionTable, session_id="1")
     memory = ConversationBufferMemory(
         memory_key="chat_history", chat_memory=message_history, return_messages=True
     )  # Maintains a history of previous messages
@@ -311,6 +313,8 @@ if uploaded_file is not None:
 
                     st.session_state.past.append('Human: ' + user_input)
                     st.session_state.generated.append('Assistant: ' + output)
+                    message_history.add_user_message(user_input)
+                    message_history.add_ai_message(output)
                 if st.sidebar.button("Clear messages"):
                     clear_message()
 
