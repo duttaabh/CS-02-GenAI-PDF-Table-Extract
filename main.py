@@ -161,7 +161,8 @@ def display_generated_insights(file_name):
         for table in tables:
             info = str(table).replace('[', '').replace(']', '')
             table_info.append(info)
-    return get_rag_chat_response(str(table_info), get_memory(), build_index_from_string(table_info))
+    index = build_index_from_string(table_info)
+    return get_rag_chat_response(str(table_info), get_memory(), index)
     # st.write(generate_insights(table_info)
 
 def get_llm():
