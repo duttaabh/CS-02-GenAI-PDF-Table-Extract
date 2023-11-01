@@ -29,9 +29,10 @@
 11. Run python -m streamlit run main.py
 12. The following prompt will appear upon execution of the previous command
   
-  # You can now view your Streamlit app in your browser. #
+  You can now view your Streamlit app in your browser.
 
   Network URL: http://xxx.xx.xx.xxx:8501
+  
   External URL: http://x.xx.xx.xx:8501
 
 # Run the Streamlit application on EC2 with CloudFormation #
@@ -48,8 +49,8 @@
 11. Finally run "streamlit run main.py" to run the streamlit application
 12. The following prompt will appear upon execution of the previous command
   
-  # You can now view your Streamlit app in your browser. #
+  You can now view your Streamlit app in your browser.
 
   Network URL: http://xxx.xx.xx.xxx:8501
+  
   External URL: http://x.xx.xx.xx:8501
-#################################################################################################
