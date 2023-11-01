@@ -1,5 +1,5 @@
 # README.md
-##################################################################################################################################
+
 # Pre-Requsites
 1. python 3.9 or above
 2. git cli (latest)
@@ -14,7 +14,7 @@
    * faiss-cpu
    * opensearch-py
    * requests_aws4auth
-##################################################################################################################################
+
 # Run the Streamlit application in your local environment #
 1. cd <LOCAL_DIR>
 2. python -m venv env
@@ -33,7 +33,7 @@
 
   Network URL: http://xxx.xx.xx.xxx:8501
   External URL: http://x.xx.xx.xx:8501
-################################################################################################################################## 
+
 # Run the Streamlit application on EC2 with CloudFormation #
 1. Download the streamlit_deploy.yaml file and create a new stack in AWS cloudformation console https://console.aws.amazon.com/cloudformation.
 2. Please make sure to use your PC's public IP address in the CIDR input parameter (e.g. xx.xxx.xxx.xx/32) 
@@ -52,4 +52,4 @@
 
   Network URL: http://xxx.xx.xx.xxx:8501
   External URL: http://x.xx.xx.xx:8501
-##################################################################################################################################
+#################################################################################################
