@@ -31,7 +31,7 @@
 12. export AWS_REGION=#Application Deployment Region
 13. export S3_BUCKET_NAME=#S3 bucket for Textract PDF Analysis>
 14. export OPENSEARCH_ENDPOINT=#Opensearch Endpoint URL to access the collections
-15. export DYNAMO_CHAT_HISTORY=#DynamoDB table name to store chat history>
+15. export DYNAMO_CHAT_HISTORY=#DynamoDB table name to store chat history
 16. Run 'python -m streamlit run main.py'
 17. The following prompt will appear upon execution of the previous command
   
