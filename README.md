@@ -3,7 +3,8 @@
 # Pre-Requsites
 1. python 3.9 or above
 2. git cli (latest)
-3. python libraries:
+3. aws cli (latest)
+4. python libraries:
    * boto3
    * streamlit
    * streamlit_chat
