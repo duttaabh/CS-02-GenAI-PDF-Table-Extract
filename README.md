@@ -43,7 +43,7 @@
 
 # Run the Streamlit application on EC2 with CloudFormation #
 1. Download the streamlit_deploy.yaml file and create a new stack in AWS cloudformation console https://console.aws.amazon.com/cloudformation.
-2. Please make sure to use your PC's public IP address in the CIDR input parameter (e.g. xx.xxx.xxx.xx/32) 
+2. Please make sure to use your PC's public IP address in the CIDR input parameter (e.g. xx.xxx.xxx.xx/32, please check here https://www.whatismyip.com/) 
 3. Once the CFN template is successfully running, please login to the EC2 instance created by the CFN
 4. Please refer to the Stack output to find the instance id
 5. Lookup the instance id in the EC2 clonsole (https://console.aws.amazon.com/ec2)
