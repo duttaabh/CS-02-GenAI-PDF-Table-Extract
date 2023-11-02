@@ -51,7 +51,16 @@ print("session_token: " + str(credentials.token))
 awsauth = AWS4Auth(credentials.access_key, credentials.secret_key,
                    region, service, session_token=credentials.token)
 
-message_history = DynamoDBChatMessageHistory(table_name=sessionTable, session_id='0')
+history_key = {
+    "pk": "session_id::0",
+    "sk": "langchain_history",
+}
+message_history = DynamoDBChatMessageHistory(
+    table_name=sessionTable,
+    session_id="0",
+    key=history_key,
+)
+# message_history = DynamoDBChatMessageHistory(table_name=sessionTable, session_id='0')
 
 def upload_file(file):
     try:
