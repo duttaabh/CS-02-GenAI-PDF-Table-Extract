@@ -307,7 +307,7 @@ if uploaded_file is not None:
             if 'index' not in st.session_state:
                 st.session_state['index'] = build_index_from_string(extract_table_data_from_pdf(uploaded_file.name))
             # st.write(st.session_state['index'].vectorstore.as_retriever())
-            st.write(st.session_state['index'].as_retriever())
+            # st.write(st.session_state['index'].as_retriever())
             display_pdf_content(uploaded_file.name)
             st.sidebar.header('Chat about the uploaded file here')
             with st.sidebar.form(key='widget', clear_on_submit=True):
