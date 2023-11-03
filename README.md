@@ -17,11 +17,11 @@
    * requests_aws4auth
 
 # Run the Streamlit application in your local environment #
-1. Create a new IAM user with Administrator Access privillege and save the access and secret key.
-2. Once the user is created, run 'aws configure' to create the default profile for AWS access from your local environment
-3. From AWS console, create a new S3 bucket in your preferred region
-4. From AWS console, create a new Vectorsearch type OpenSearch collection, please add the arn of the IAM user in the principal list of the data access policy
-5. From AWS console, create a new DynamoDB table for chat history (https://python.langchain.com/docs/integrations/memory/aws_dynamodb)
+1. Create a new IAM user with Administrator Access policy in AWS IAM console and save the access and secret key.
+2. Once the user is created, run 'aws configure' to create the [default] profile for AWS access from your local environment
+3. From AWS S3 console, create a new S3 bucket in your preferred region
+4. From AWS OpenSearch console, create a new Vectorsearch type OpenSearch collection, please add the arn of the IAM user in the principal list of the data access policy
+5. From AWS console, create a new DynamoDB table for chat history (https://python.langchain.com/docs/integrations/memory/aws_dynamodb#primary-key-name)
 6. cd <LOCAL_DIR>
 7. python -m venv env
 8. source env/bin/activate
