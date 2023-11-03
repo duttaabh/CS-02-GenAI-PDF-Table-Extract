@@ -33,7 +33,7 @@
 14. export OPENSEARCH_ENDPOINT=#Opensearch Endpoint URL to access the collections
 15. export DYNAMO_CHAT_HISTORY=#DynamoDB table name to store chat history
 16. Run 'python -m streamlit run main.py'
-17. The following prompt should appear upon execution of the previous command, please open the 'External URL' to on your browser to view the web application
+17. The following prompt should appear upon execution of the previous command, please open the 'External URL' in your browser to view the web application
   
   You can now view your Streamlit app in your browser.
 
@@ -53,7 +53,7 @@
 9. Login as ec2-user and navigate to /home/ce2-user/ directory (sudo -i -u ec2-user)
 10. Run ./set_env.sh to set the application environment variables
 11. Finally run "streamlit run main.py" to run the streamlit application
-12. The following prompt should appear upon execution of the previous command, please open the 'External URL' to on your browser to view the web application
+12. The following prompt should appear upon execution of the previous command, please open the 'External URL' in your browser to view the web application
   
   You can now view your Streamlit app in your browser.
 
