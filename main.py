@@ -153,7 +153,7 @@ def get_rag_chat_response(input_text, memory, index):  # chat client function
                                                                         memory=memory)
 
     chat_response = conversation_with_retrieval(
-        {"question": "\n\nHuman:Explain the details in " + input_text + "\n\nAssistant:"})  # pass the user message, history, and knowledge to the model
+        {"question": "\n\nHuman: " + input_text + "\n\nAssistant:"})  # pass the user message, history, and knowledge to the model
     # print(chat_response)
     return chat_response['answer']
 
