@@ -205,7 +205,7 @@ def build_index_from_string(table_info=[]): #creates and returns an in-memory ve
     f.close()
 
     embeddings = BedrockEmbeddings(
-        region_name='us-east-1',
+        region_name=region,
         model_id='amazon.titan-embed-text-v1',
         # endpoint_url='https://prod.us-west-2.dataplane.bedrock.aws.dev'
     )  # create a Titan Embeddings client
@@ -251,7 +251,7 @@ def build_index_from_string(table_info=[]): #creates and returns an in-memory ve
 
 def extract_table_data_from_pdf(file_name):
     # st.markdown('<u>Embeddings</u>', unsafe_allow_html=True)
-    textract = boto3.client('textract', region_name='us-east-1')
+    textract = boto3.client('textract', region_name=region)
     foldername = file_name.split('.')[0]
     response = call_textract(input_document=('s3://' + bucket_name + '/' + foldername + '/' + file_name),
                              features=[Textract_Features.TABLES],
