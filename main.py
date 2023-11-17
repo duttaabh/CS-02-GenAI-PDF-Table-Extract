@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 import streamlit as st
 from streamlit_chat import message
 from textractcaller.t_call import call_textract, Textract_Features
@@ -51,13 +53,17 @@ print("session_token: " + str(credentials.token))
 awsauth = AWS4Auth(credentials.access_key, credentials.secret_key,
                    region, service, session_token=credentials.token)
 
+if 'sessionId' not in st.session_state:
+    st.session_state['sessionId'] = str(uuid4())
+
 history_key = {
-    "pk": "session_id::0",
-    "sk": "langchain_history",
+    "pk": "session_id::" + st.session_state['sessionId'],
+    "sk": "langchain_history_" + st.session_state['sessionId'],
 }
+
 message_history = DynamoDBChatMessageHistory(
     table_name=sessionTable,
-    session_id="0",
+    session_id=st.session_state['sessionId'],
     key=history_key,
 )
 # message_history = DynamoDBChatMessageHistory(table_name=sessionTable, session_id='0')
